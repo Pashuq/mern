@@ -5,15 +5,11 @@ const API_URL = "/api/users/";
 // Register user
 const register = async (userData) => {
   const response = await axios.post(
-    "http://localhost:3000" + API_URL,
+    "http://localhost:3001" + API_URL,
     userData,
     {
       headers: {
         "Access-Control-Allow-Origin": "*",
-      },
-      proxy: {
-        host: "http://localhost",
-        port: 3000,
       },
     }
   );

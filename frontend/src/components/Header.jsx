@@ -1,27 +1,22 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { logout, reset } from "../features/auth/authSlice";
 
 function Header() {
-  // const newPost = {
-  //   name: "dasha",
-  //   email: "dasha@mail.ru",
-  //   password: "dasha",
-  // };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // const sendPostRequest = async () => {
-  //   try {
-  //     const resp = await axios.post("http://localhost:3000/api/users", newPost);
-  //     console.log(resp);
-  //   } catch (err) {
-  //     // Handle Error Here
-  //     //console.error(err);
-  //   }
-  // };
+  const { user } = useSelector((state) => state.auth);
 
-  // sendPostRequest();
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
 
   return (
     <header className="header">
@@ -29,16 +24,26 @@ function Header() {
         <Link to="/">GoalSetter</Link>
       </div>
       <ul>
-        <li>
-          <Link to="/login">
-            <FaSignInAlt /> Login
-          </Link>
-        </li>
-        <li>
-          <Link to="/register">
-            <FaUser /> Register
-          </Link>
-        </li>
+        {user ? (
+          <li>
+            <button className="btn" onClick={onLogout}>
+              <FaSignOutAlt /> Logout
+            </button>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/login">
+                <FaSignInAlt /> Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/register">
+                <FaUser /> Register
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </header>
   );
