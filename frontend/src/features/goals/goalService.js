@@ -1,11 +1,36 @@
 import axios from "axios";
 
 const API_URL = "/api/goals";
+const HOST = "http://localhost:3000";
 
 //create goal
 const createGoal = async (userData, token) => {
-  const response = await axios.post(
-    "http://localhost:3000" + API_URL,
+  const response = await axios.post(HOST + API_URL, userData, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+//read goals
+const getGoals = async (token) => {
+  const response = await axios.get(HOST + API_URL, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+//update goal
+const updateGoal = async (userData, token) => {
+  const response = await axios.patch(
+    HOST + API_URL + "/" + userData.id,
     userData,
     {
       headers: {
@@ -18,9 +43,9 @@ const createGoal = async (userData, token) => {
   return response.data;
 };
 
-//read goals
-const getGoals = async (token) => {
-  const response = await axios.get("http://localhost:3000" + API_URL, {
+//delete goal
+const deleteGoal = async (id, token) => {
+  const response = await axios.delete(HOST + API_URL + "/" + id, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       Authorization: `Bearer ${token}`,
@@ -29,12 +54,6 @@ const getGoals = async (token) => {
 
   return response.data;
 };
-
-//update goal
-const updateGoal = async (id, token) => {};
-
-//delete goal
-const deleteGoal = async (id, token) => {};
 
 const goalService = {
   createGoal,
