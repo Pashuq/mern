@@ -60,7 +60,7 @@ export const updateGoal = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await goalService.deleteGoal(userData, token);
+      return await goalService.updateGoal(userData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -150,6 +150,10 @@ const goalSlice = createSlice({
       })
       .addCase(updateGoal.fulfilled, (state, action) => {
         state.isLoading = false;
+        let idx = state.goals.findIndex(
+          (goal) => goal._id === action.payload._id
+        );
+        state.goals[idx].completed = action.payload.completed;
       });
   },
 });
