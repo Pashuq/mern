@@ -17,25 +17,29 @@ function GoalList() {
   };
 
   return (
-    <div style={{ width: "70%", margin: "0 auto" }}>
+    <div className="goal-list">
       {goals.map((goal) => (
-        <div key={goal._id}>
-          <div style={{ display: "flex" }}>
+        <div className="goal-list__item goal-item" key={goal._id}>
+          <div className="goal-item__control">
             <AiTwotoneDelete
-              style={{ cursor: "pointer" }}
+              className="icon-hov"
               onClick={() => {
                 handleDeleteGoal(goal._id);
               }}
             />
             <FaPencilAlt
-              style={{ cursor: "pointer" }}
+              className="icon-hov"
               onClick={() => {
                 handleUpdateGoal({ id: goal._id, completed: !goal.completed });
               }}
             />
           </div>
 
-          {goal.completed ? <s>{goal.text}</s> : goal.text}
+          {goal.completed ? (
+            <s className="goal-item__text">{goal.text}</s>
+          ) : (
+            <p className="goal-item__text">{goal.text}</p>
+          )}
         </div>
       ))}
     </div>

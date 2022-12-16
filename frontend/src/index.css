@@ -151,6 +151,17 @@ h3 {
   justify-content: center;
 }
 
+.btn-hov {
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.2s ease-in;
+}
+
+.btn-hov:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s ease-in;
+}
+
 .btn svg {
   margin-right: 8px;
 }
@@ -163,10 +174,6 @@ h3 {
 .btn-block {
   width: 100%;
   margin-bottom: 20px;
-}
-
-.btn:hover {
-  transform: scale(0.98);
 }
 
 .loadingSpinnerContainer {
@@ -189,6 +196,45 @@ h3 {
   border-color: #000 transparent #555 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
+}
+
+.goal-list {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.goal-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+}
+.goal-item__control {
+  display: flex;
+  gap: 1em;
+}
+.goal-item__text {
+  max-width: 100%;
+  word-wrap: break-word;
+  padding: 0;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.icon-hov {
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 0.2s ease-in;
+}
+
+.icon-hov:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in;
 }
 
 @keyframes spin {
