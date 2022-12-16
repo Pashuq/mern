@@ -29,7 +29,7 @@ const getGoals = async (token) => {
 
 //update goal
 const updateGoal = async (userData, token) => {
-  const response = await axios.patch(
+  const response = await axios.put(
     HOST + API_URL + "/" + userData.id,
     userData,
     {

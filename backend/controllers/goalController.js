@@ -22,6 +22,7 @@ const setGoal = asyncHandler(async (req, res) => {
   const goal = await Goal.create({
     text: req.body.text,
     user: req.user.id,
+    completed: req.body?.completed,
   });
   res.status(200).json(goal);
 });
@@ -52,7 +53,7 @@ const updateGoal = asyncHandler(async (req, res) => {
     new: true,
   });
 
-  res.status(200).json({ updatedGoal });
+  res.status(200).json(updatedGoal);
 });
 
 // @desc Delete goal
