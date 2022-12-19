@@ -1,18 +1,15 @@
 import axios from "axios";
 
 const API_URL = "/api/users/";
+const HOST = process.env.HOST;
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(
-    "http://localhost:3000" + API_URL,
-    userData,
-    {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    }
-  );
+  const response = await axios.post(HOST + API_URL, userData, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
