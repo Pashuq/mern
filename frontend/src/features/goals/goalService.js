@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "/api/goals";
-const HOST = "http://localhost:3000";
+const HOST = process.env.HOST;
 
 //create goal
 const createGoal = async (userData, token) => {
