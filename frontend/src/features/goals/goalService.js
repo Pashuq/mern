@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "/api/goals";
-const HOST = process.env.HOST;
+const HOST = "https://goalssetter.onrender.com";
 
 //create goal
 const createGoal = async (userData, token) => {
