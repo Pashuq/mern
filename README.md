@@ -1,4 +1,5 @@
 # Goal setter
+[demo: https://goalssetter.onrender.com/](https://goalssetter.onrender.com/) 
 
 ## Описание:
 Приложение для создания списка дел. 
@@ -6,17 +7,26 @@
 ## Реализованные фичи:
 
 ### backend:
-аутентификация по jwt
-crud api 
+1.аутентификация по jwt
+2.crud api 
 
 ### frontend:
-роутинг
-http запросы к серверу
-работа со store в т.ч. и асинхронная
-статусы загрузок и обработки ошибок
-хранение авторизации в localstorage
+1.роутинг
+2.http запросы к серверу
+3.работа со store в т.ч. и асинхронная
+4.статусы загрузок и обработки ошибок
+5.хранение авторизации в localstorage
 
 
 ## Используемые технологии
-express.js, mongo.db, mongoose, jwt, react, react-router, axios, redux-toolkit, redux-thunk, react-toastify.
+- express.js
+- mongo.db
+- mongoose
+- jwt
+- react
+- react-router
+- axios
+- redux-toolkit
+- redux-thunk
+- react-toastify
 
