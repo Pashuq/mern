@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
-import { register, reset } from "../../features/auth/authSlice";
-import Spinner from "../../components/Spinner";
+import { register, resetAuth } from "../../features/auth/authSlice";
+
+import SpinnerWithOverlay from "../../components/SpinnerWithOverlay";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ function Register() {
       navigate("/");
     }
 
-    //dispatch(reset());
+    //dispatch(resetAuth());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
@@ -59,7 +60,7 @@ function Register() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <SpinnerWithOverlay />;
   }
 
   return (

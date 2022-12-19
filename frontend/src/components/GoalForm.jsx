@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { createGoal } from "../features/goals/goalSlice";
 
@@ -7,6 +7,8 @@ function GoalForm() {
   const [text, setText] = useState("");
 
   const dispatch = useDispatch();
+
+  const goal = useSelector((state) => state.goal);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +21,9 @@ function GoalForm() {
     <section className="form">
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="text">Goal</label>
+          <label htmlFor="text">
+            {goal.isLoading ? <div className="loadingSpinner"></div> : "Goal"}
+          </label>
           <input
             type="text"
             name="text"
@@ -30,7 +34,11 @@ function GoalForm() {
           />
         </div>
         <div className="form-group">
-          <button className="btn btn-block btn-hov" type="submit">
+          <button
+            disabled={goal.isLoading}
+            className="btn btn-block btn-hov"
+            type="submit"
+          >
             Add goal
           </button>
         </div>

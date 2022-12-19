@@ -107,9 +107,11 @@ const goalSlice = createSlice({
         state.message = "";
       })
       .addCase(createGoal.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(createGoal.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.goals.push(action.payload);
       })
       .addCase(getGoals.pending, (state) => {
