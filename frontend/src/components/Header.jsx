@@ -1,10 +1,9 @@
-import axios from "axios";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
-import { logout, reset } from "../features/auth/authSlice";
+import { logout, resetAuth } from "../features/auth/authSlice";
+import { resetGoal } from "../features/goals/goalSlice";
 
 function Header() {
   const navigate = useNavigate();
@@ -14,7 +13,8 @@ function Header() {
 
   const onLogout = () => {
     dispatch(logout());
-    dispatch(reset());
+    dispatch(resetAuth());
+    dispatch(resetGoal());
     navigate("/");
   };
 

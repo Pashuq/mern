@@ -94,7 +94,11 @@ export const deleteGoal = createAsyncThunk(
 const goalSlice = createSlice({
   name: "goal",
   initialState,
-  reducers: {},
+  reducers: {
+    resetGoal: (state) => {
+      state.goals = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createGoal.pending, (state) => {
@@ -109,8 +113,8 @@ const goalSlice = createSlice({
         state.goals.push(action.payload);
       })
       .addCase(getGoals.pending, (state) => {
-        state.isError = false;
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getGoals.rejected, (state, action) => {
         state.isError = true;
@@ -120,23 +124,6 @@ const goalSlice = createSlice({
       .addCase(getGoals.fulfilled, (state, action) => {
         state.isLoading = false;
         state.goals = action.payload;
-      })
-      .addCase(deleteGoal.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
-        state.message = "";
-      })
-      .addCase(deleteGoal.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(deleteGoal.fulfilled, (state, action) => {
-        state.isLoading = false;
-        const filtredGoals = state.goals.filter((goal) => {
-          return goal._id !== action.payload.id;
-        });
-        state.goals = filtredGoals;
       })
       .addCase(updateGoal.pending, (state) => {
         state.isLoading = true;
@@ -154,9 +141,26 @@ const goalSlice = createSlice({
           (goal) => goal._id === action.payload._id
         );
         state.goals[idx].completed = action.payload.completed;
+      })
+      .addCase(deleteGoal.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.message = "";
+      })
+      .addCase(deleteGoal.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteGoal.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const filtredGoals = state.goals.filter((goal) => {
+          return goal._id !== action.payload.id;
+        });
+        state.goals = filtredGoals;
       });
   },
 });
 
-export const {} = goalSlice.actions;
+export const { resetGoal } = goalSlice.actions;
 export default goalSlice.reducer;

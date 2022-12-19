@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { login, reset } from "../../features/auth/authSlice";
+import { login, resetAuth } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
 import { FaSignInAlt } from "react-icons/fa";
 
@@ -48,7 +48,7 @@ function Login() {
     };
 
     dispatch(login(userData));
-    dispatch(reset());
+    dispatch(resetAuth());
 
     if (isLoading) {
       return <Spinner />;
