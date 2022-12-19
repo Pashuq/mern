@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { login, resetAuth } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
 import { FaSignInAlt } from "react-icons/fa";
+import TestUser from "../../components/TestUser";
+import { testUsers } from "../../configs/testUsersConfig";
+import SpinnerWithOverlay from "../../components/SpinnerWithOverlay";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -51,7 +54,7 @@ function Login() {
     dispatch(resetAuth());
 
     if (isLoading) {
-      return <Spinner />;
+      return <SpinnerWithOverlay />;
     }
   };
 
@@ -99,6 +102,14 @@ function Login() {
             </div>
           </form>
         </section>
+
+        <p className="testusers-title">you can use test users</p>
+
+        <div className="testusers">
+          {testUsers.map((user) => (
+            <TestUser {...user} />
+          ))}
+        </div>
       </section>
     </>
   );
